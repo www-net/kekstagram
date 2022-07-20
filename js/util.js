@@ -1,12 +1,12 @@
 
 // генерация числа из массива
 
-const getRandomPositiveInteger = function (min, max) {
-  if (max > min && min >= 0 && max >= 0) {
-    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+const getRandomPositiveInteger = function (a, b) {
+    const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+    const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+    const result = Math.random() * (upper - lower + 1) + lower; //Максимум и минимум включаются
+    return Math.floor(result);
   }
-  return 'Число должно быть положительным и/или больше минимального значения!';
-}
 
 // Функция ниже возвращает булевое значение, проверяя длину текста:
 
@@ -14,4 +14,21 @@ const checkStringLength = function (text, maxLength) {
   return text.length <= maxLength;
 }
 
-export { getRandomPositiveInteger, checkStringLength }
+// Функция закрытия окна по Escape
+
+const getEscapeEvent = (evt, action) => {
+  if (evt.key === 'Escape') {
+    action();
+  }
+};
+
+// Функция закрытия окна с помощью Enter по кнопке close
+
+const getEnterEvent = (evt, action) => {
+  if (evt.key === 'Enter') {
+    action();
+  }
+};
+
+
+export { getRandomPositiveInteger, checkStringLength, getEscapeEvent, getEnterEvent };
