@@ -1,5 +1,6 @@
-import './data.js'
-import './picture.js'
-import './big-picture.js'
+import{ getObjectOutput } from './data.js';
+import { createPhotosFragment } from './picture.js';
+import './form.js';
 
-
+const photosData = getObjectOutput();
+createPhotosFragment(photosData);

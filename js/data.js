@@ -35,7 +35,7 @@ const DESCRIPTIONS = [
 
 //Основные параметры расчетных значений
 
-const OBJECT_COUNT = 25;
+const OBJECT_COUNT = 26;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const MIN_AVATAR = 1;

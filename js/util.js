@@ -16,7 +16,7 @@ const checkStringLength = function (text, maxLength) {
 
 // Функция закрытия окна по Escape
 
-const getEscapeEvent = (evt, action) => {
+const isEscapeEvent = (evt, action) => {
   if (evt.key === 'Escape') {
     action();
   }
@@ -24,11 +24,11 @@ const getEscapeEvent = (evt, action) => {
 
 // Функция закрытия окна с помощью Enter по кнопке close
 
-const getEnterEvent = (evt, action) => {
+const isEnterEvent = (evt, action) => {
   if (evt.key === 'Enter') {
     action();
   }
 };
 
 
-export { getRandomPositiveInteger, checkStringLength, getEscapeEvent, getEnterEvent };
+export { getRandomPositiveInteger, checkStringLength, isEscapeEvent, isEnterEvent };
