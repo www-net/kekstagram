@@ -77,6 +77,7 @@ pristine.addValidator(inputHashtags, () => {
   return hashtags.every((hashtag) => HashtagsFeatures.REGULAR.test(hashtag));
 }, ErrorMessages.BAG_SYMBOL_MESSAGE);
 
+
 //Проверка на обязательное наличие первого символа '#'
 pristine.addValidator(inputHashtags, () => {
   const hashtags = stringToArray(inputHashtags.value.toLowerCase(), SPACE_HASHTAG_SEPARATOR);
