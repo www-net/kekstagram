@@ -34,18 +34,16 @@ const DESCRIPTIONS = [
 ];
 
 //Основные параметры расчетных значений
-
 const OBJECT_COUNT = 26;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const MIN_AVATAR = 1;
 const MAX_AVATAR = 6;
 const MIN_OBJECT = 1;
-const MAX_OBJECT = 6;
+const MAX_OBJECT = 15;
 
 
 //Функции по созданию случайных чисел по заданным параметрам
-
 const getLikesNumber = () => getRandomPositiveInteger(MIN_LIKES, MAX_LIKES);
 const getCommentsNumber = () => getRandomPositiveInteger(0, COMMENTS.length - 1);
 const getNamesNumber = () => getRandomPositiveInteger(0, NAMES.length - 1);
@@ -54,10 +52,9 @@ const getObjectsNumber = () => getRandomPositiveInteger(MIN_OBJECT, MAX_OBJECT);
 const getDescriptionsNumber = () => getRandomPositiveInteger(0, DESCRIPTIONS.length - 1);
 
 //Функция создания массива объектов коментариев
-
 const getObjectsArray = () => {
   const objectsArray = [];
-  for (let i = 1; i <= getObjectsNumber(); i++) {      //
+  for (let i = 1; i <= getObjectsNumber(); i++) {
     const commentsObject = {
       id: i,
       avatar: `img/avatar-${getAvatarNumber()}.svg`,
@@ -70,7 +67,6 @@ const getObjectsArray = () => {
 };
 
 //Функция формирования объекта описания фото и комментария из массива
-
 const createRandomDescription = (elem, id) => {
   return ({
   id: (++id), //идентификатор описания. Это число от 1 до 25. Идентификаторы не должны повторяться.
@@ -82,12 +78,8 @@ const createRandomDescription = (elem, id) => {
 };
 
 //Функция cоздания и вывода массива
-
 const getObjectOutput = () =>
   Array.from({length: OBJECT_COUNT}, createRandomDescription);
-
-// console.log(getObjectOutput());
-
 
 export { getObjectOutput };
 

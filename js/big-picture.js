@@ -1,5 +1,6 @@
-import {isEscapeEvent, isEnterEvent } from "./util.js";
+import { isEscapeEvent, isEnterEvent } from "./util.js";
 
+//Описание переменных
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = document.querySelector('.big-picture__img');
 const commentsList = document.querySelector('.social__comments');
@@ -10,7 +11,6 @@ const body = document.querySelector('body');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 
 // Отрисовка одного комментария
-
 const getBigPictureComment = (comment) => {
   const commentItem = commentElement.cloneNode(true);
   commentItem.querySelector('.social__picture').src = comment.avatar;
@@ -33,7 +33,7 @@ const createCommentsFragment = (commentsArray) => {
 
 //Создание полноразмерного изображения
 
-const showBigPhoto = (bigPhoto) => {
+const ShowBigPhoto = (bigPhoto) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
   commentsList.innerHTML = '';
@@ -41,7 +41,7 @@ const showBigPhoto = (bigPhoto) => {
   bigPicture.querySelector('.likes-count').textContent = bigPhoto.likes;
   bigPicture.querySelector('.comments-count').textContent = bigPhoto.comments.length;
   bigPicture.querySelector('.social__caption').textContent = bigPhoto.description;
-  createCommentsFragment(bigPhoto.comments) //Список комментариев под фотографией:
+  createCommentsFragment(bigPhoto.comments);
   socialCommentCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
   document.addEventListener('keydown', onBigPictureEscPress);
@@ -49,13 +49,8 @@ const showBigPhoto = (bigPhoto) => {
   bigPictureClose.addEventListener('click', onBigPictureCloseClick);
 };
 
-//Вывод полноразмерного изображения
-const showBigPictureObject = (pictureObject) => {
-  showBigPhoto(pictureObject);
-};
-
 // Закрытие окна полноразмерного изображения
-const closeBigPicture = () => {
+const CloseBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onBigPictureEscPress);
@@ -65,17 +60,18 @@ const closeBigPicture = () => {
 
 // Функция закрытия окна полноразмерного изображения по Escape
 function onBigPictureEscPress(evt) {
-  isEscapeEvent(evt, closeBigPicture);
+  isEscapeEvent(evt, CloseBigPicture);
 }
 
 //Обработчик закрытия окна нажатием Enter по иконке закрытия
 function onBigPictureEnterPress(evt) {
-  isEnterEvent(evt, closeBigPicture);
+  isEnterEvent(evt, CloseBigPicture);
 }
 
 //Обработчик закрытия окна кликом по иконке закрытия
 function onBigPictureCloseClick() {
-  closeBigPicture();
+  CloseBigPicture();
 }
 
-export { showBigPictureObject };
+export { ShowBigPhoto };
+
