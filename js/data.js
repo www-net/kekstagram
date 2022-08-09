@@ -39,8 +39,8 @@ const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const MIN_AVATAR = 1;
 const MAX_AVATAR = 6;
-const MIN_OBJECT = 1;
-const MAX_OBJECT = 15;
+const MIN_COMMENTS = 1;
+const MAX_COMMENTS = 20;
 
 
 //Функции по созданию случайных чисел по заданным параметрам
@@ -48,7 +48,7 @@ const getLikesNumber = () => getRandomPositiveInteger(MIN_LIKES, MAX_LIKES);
 const getCommentsNumber = () => getRandomPositiveInteger(0, COMMENTS.length - 1);
 const getNamesNumber = () => getRandomPositiveInteger(0, NAMES.length - 1);
 const getAvatarNumber = () => getRandomPositiveInteger(MIN_AVATAR, MAX_AVATAR);
-const getObjectsNumber = () => getRandomPositiveInteger(MIN_OBJECT, MAX_OBJECT);
+const getObjectsNumber = () => getRandomPositiveInteger(MIN_COMMENTS, MAX_COMMENTS);
 const getDescriptionsNumber = () => getRandomPositiveInteger(0, DESCRIPTIONS.length - 1);
 
 //Функция создания массива объектов коментариев
