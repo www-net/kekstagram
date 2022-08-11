@@ -13,7 +13,6 @@ const body = document.querySelector('body');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 let commentsArrayData = [];
 let commentsArrayDataRemain = [];
-let BigPhotoItemComments;
 
 // Отрисовка одного комментария
 const getBigPictureComment = (comment) => {
