@@ -1,8 +1,14 @@
-import{ getObjectOutput } from './data.js';
 import { createPhotosFragment } from './picture.js';
+import { getData } from './api.js';
+import { closeImageEditOverlay } from './form.js';
+import { setUserFormSubmit } from './validation.js';
 import './form.js';
-import './validation.js';
 import './slider.js';
 
-const photosData = getObjectOutput();
-createPhotosFragment(photosData);
+
+//Отправляем запрос на сервер
+getData((photos) => {
+  createPhotosFragment(photos);
+});
+
+setUserFormSubmit(closeImageEditOverlay)

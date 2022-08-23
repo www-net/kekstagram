@@ -107,7 +107,6 @@ effectsList.addEventListener('click', (evt) => {
     sliderElement.noUiSlider.on('update', ()=> {
       valueElement.value = sliderElement.noUiSlider.get();
       image.style.filter = `${effectFilter.filter}(${valueElement.value}${effectFilter.unit})`
-      console.log(`${effectFilter}`)
     });
   }
 });

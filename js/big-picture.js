@@ -45,7 +45,6 @@ const ShowBigPhoto = (bigPhoto) => {
   bigPicture.querySelector('.comments-count').textContent = bigPhoto.comments.length;
   bigPicture.querySelector('.social__caption').textContent = bigPhoto.description;
   commentsArrayData = bigPhoto.comments.slice();
-  console.log(commentsArrayData);
   commentsArrayDataRemain = commentsArrayData.slice(0, MAX_COMMENT);
   if (bigPhoto.comments.length <= MAX_COMMENT) {
     createCommentsFragment(commentsArrayData);

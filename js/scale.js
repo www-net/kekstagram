@@ -48,4 +48,4 @@ const onMaxButtonClick = () => {
   getScaleImageTransform();
 }
 
-export {onMinButtonClick, onMaxButtonClick}
+export { onMinButtonClick, onMaxButtonClick, getScaleImageTransform }
