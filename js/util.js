@@ -9,13 +9,11 @@ const getRandomPositiveInteger = function (a, b) {
   }
 
 // Функция ниже возвращает булевое значение, проверяя длину текста:
-
 const checkStringLength = function (text, maxLength) {
   return text.length <= maxLength;
 }
 
 // Функция закрытия окна по Escape
-
 const isEscapeEvent = (evt, action) => {
   if (evt.key === 'Escape') {
     action();
@@ -23,7 +21,6 @@ const isEscapeEvent = (evt, action) => {
 };
 
 // Функция закрытия окна с помощью Enter по кнопке close
-
 const isEnterEvent = (evt, action) => {
   if (evt.key === 'Enter') {
     action();
@@ -32,7 +29,6 @@ const isEnterEvent = (evt, action) => {
 
 
 // Показ сообщения об отправке с ошибкой на 5 секунд
-
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -54,8 +50,26 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 }
 
+// Функция перемешивания массива
+const mixPhotosArray = (array) => {
+  let k;
+  let temp;
+  for (let i = array.length -1; i > 0; i--) {
+    k = Math.floor(Math.random() * (i + 1));
+    temp = array[k];
+    array[k] = array[i];
+    array[i] = temp;
+  }
+  return array;
+}
 
+// Устранение дребезга списка фотографий
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
-
-
-export { getRandomPositiveInteger, checkStringLength, isEscapeEvent, isEnterEvent, showAlert };
+export { getRandomPositiveInteger, checkStringLength, isEscapeEvent, isEnterEvent, showAlert, mixPhotosArray, debounce };

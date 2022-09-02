@@ -46,12 +46,12 @@ const ShowBigPhoto = (bigPhoto) => {
   bigPicture.querySelector('.social__caption').textContent = bigPhoto.description;
   commentsArrayData = bigPhoto.comments.slice();
   commentsArrayDataRemain = commentsArrayData.slice(0, MAX_COMMENT);
-  if (bigPhoto.comments.length <= MAX_COMMENT) {
+  if (commentsArrayData.length <= MAX_COMMENT) {
     createCommentsFragment(commentsArrayData);
     socialCommentCount.firstChild.textContent = `${commentsArrayData.length} из `;
     commentsLoader.classList.add('hidden');
   }
-  if (bigPhoto.comments.length > MAX_COMMENT) {
+  if (commentsArrayData.length > MAX_COMMENT) {
     createCommentsFragment(commentsArrayDataRemain);
     socialCommentCount.firstChild.textContent = `${commentsList.children.length} из `;
     commentsLoader.classList.remove('hidden');
@@ -63,7 +63,7 @@ const ShowBigPhoto = (bigPhoto) => {
 };
 
 //Проверка текущего числа комментариев
-const getCurentCommentCount = (comments) => comments ? comments.children.length : 0;
+const getCurrentCommentCount = (comments) => comments ? comments.children.length : 0;
 
 //Обработчик загрузки комментариев
 function onCommentsLoaderClick() {
@@ -71,9 +71,13 @@ function onCommentsLoaderClick() {
   const lastIndex = commentsList.children.length + BLOCK_COMMENTS_STEP;
   let nextVisibleBlock = commentsArrayData.slice(firstIndex, lastIndex);
   createCommentsFragment(nextVisibleBlock);
-  socialCommentCount.firstChild.textContent = `${getCurentCommentCount(commentsList)} из `;
+  socialCommentCount.firstChild.textContent = `${getCurrentCommentCount(commentsList)} из `;
   if (commentsList.children.length == commentsArrayData.length) {
     commentsLoader.classList.add('hidden')
+    commentsLoader.removeEventListener('click', onCommentsLoaderClick);
+  }
+  if (commentsArrayData.length === 0) {
+    commentsLoader.classList.add('hidden');
     commentsLoader.removeEventListener('click', onCommentsLoaderClick);
   }
 }
