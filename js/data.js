@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger} from './util.js'
+import { getRandomPositiveInteger } from './util.js';
 
 const COMMENTS = [
   'Всё отлично!',
@@ -67,19 +67,17 @@ const getObjectsArray = () => {
 };
 
 //Функция формирования объекта описания фото и комментария из массива
-const createRandomDescription = (elem, id) => {
-  return ({
+const createRandomDescription = (_elem, id) => ({
   id: (++id),
   url: `photos/${String(id)}.jpg`,
   description: DESCRIPTIONS[getDescriptionsNumber()],
   likes: getLikesNumber(),
   comments: getObjectsArray(),
 });
-};
 
 //Функция cоздания и вывода массива
 const getObjectOutput = () =>
-  Array.from({length: OBJECT_COUNT}, createRandomDescription);
+  Array.from({ length: OBJECT_COUNT }, createRandomDescription);
 
 export { getObjectOutput };
 

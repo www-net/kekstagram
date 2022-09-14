@@ -45,7 +45,7 @@ const getDefaultPhotos = () => {
 const sortPhotosByComments = (photoArray) => {
   photoArray.sort((first, second) =>
     second.comments.length - first.comments.length);
-    return photoArray;
+  return photoArray;
 };
 
 // Создание массива обсуждаемых фотографий
@@ -67,7 +67,7 @@ const onFilterClick = debounce((evt) => {
   const target = evt.target;
   removePhotos();
   setActiveClass(target);
-  switch(target) {
+  switch (target) {
     case defaultFilter:
       getDefaultPhotos();
       break;

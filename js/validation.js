@@ -1,6 +1,6 @@
-import { checkStringLength, showAlert } from "./util.js";
-import { sendData } from "./api.js";
-import { blockSubmitButton, unblockSubmitButton, onSuccessCloseForm, onErrorCloseForm } from "./form.js";
+import { checkStringLength, showAlert } from './util.js';
+import { sendData } from './api.js';
+import { blockSubmitButton, unblockSubmitButton, onSuccessCloseForm, onErrorCloseForm } from './form.js';
 
 const uploadForm = document.querySelector('#upload-select-image');
 const inputHashtags = uploadForm.querySelector('.text__hashtags');
@@ -9,7 +9,7 @@ const commentTextarea = uploadForm.querySelector('.text__description');
 //Параметры комментариев
 const commentsFeatures = {
   MAX_LENGTH: 140,
-}
+};
 
 //Описание констант
 const SPACE_HASHTAG_SEPARATOR = ' ';
@@ -32,7 +32,7 @@ const errorMessages = {
   UNIQUE: 'Хэш-тег не может быть использован дважды',
   OVER_MAX: `Количество хэш-тегов не должно быть больше ${hashtagsFeatures.MAX_NUMBER}`,
   SPACE_HASHTAGS: 'Хэш-теги должны разделяться пробелами',
-}
+};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__text',
@@ -46,7 +46,7 @@ const pristine = new Pristine(uploadForm, {
 //Обработчик отправки формы
 const setUserFormSubmit = (onSuccess) => {
   uploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();
@@ -70,7 +70,7 @@ const setUserFormSubmit = (onSuccess) => {
 // Обработчик проверки длины строки ввода комментария
 const getCommentTextareaInput = (value) => (
   checkStringLength(value, commentsFeatures.MAX_LENGTH)
-)
+);
 
 pristine.addValidator(commentTextarea, getCommentTextareaInput, errorMessages.COMMENT_LONG);
 
@@ -107,11 +107,11 @@ pristine.addValidator(inputHashtags, (value) => {
 //Проверка наличия повторного хэштега
 pristine.addValidator(inputHashtags, () => {
   const hashtagsArr = stringToArray(inputHashtags.value.toLowerCase(), SPACE_HASHTAG_SEPARATOR);
-  const newArrDublicates = Array.from(hashtagsArr);
+  const copyArrDublicates = Array.from(hashtagsArr);
   let duplicateExists = true;
   for (let i = 0; i <= hashtagsArr.length; i++) {
-    if (!(hashtagsArr[i] in newArrDublicates)) {
-      newArrDublicates[hashtagsArr[i]] = true;
+    if (!(hashtagsArr[i] in copyArrDublicates)) {
+      copyArrDublicates[hashtagsArr[i]] = true;
     } else {
       duplicateExists = false;
     }
@@ -132,7 +132,6 @@ pristine.addValidator(inputHashtags, () => {
   const hashtags = stringToArray(inputHashtags.value.toLowerCase(), SPACE_HASHTAG_SEPARATOR);
   return hashtags.every((hashtag) => hashtagsFeatures.REGULAR.test(hashtag) || hashtag.length === 0);
 }, errorMessages.SPACE_HASHTAGS);
-
 
 
 export {setUserFormSubmit};

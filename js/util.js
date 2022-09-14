@@ -2,16 +2,16 @@ const ALERT_SHOW_TIME = 5000;
 
 // Генерация числа из массива
 const getRandomPositiveInteger = function (a, b) {
-    const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-    const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-    const result = Math.random() * (upper - lower + 1) + lower; //Максимум и минимум включаются
-    return Math.floor(result);
-  }
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower; //Максимум и минимум включаются
+  return Math.floor(result);
+};
 
 // Функция ниже возвращает булевое значение, проверяя длину текста:
 const checkStringLength = function (text, maxLength) {
   return text.length <= maxLength;
-}
+};
 
 // Функция закрытия окна по Escape
 const isEscapeEvent = (evt, action) => {
@@ -38,30 +38,30 @@ const showAlert = (message) => {
   alertContainer.style.right = 0;
   alertContainer.style.padding = '10px';
   alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center'
-  alertContainer.style.backgroundColor = 'tomato'
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'tomato';
 
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
 
-  setTimeout (() => {
-    alertContainer.remove()
+  setTimeout(() => {
+    alertContainer.remove();
   }, ALERT_SHOW_TIME);
-}
+};
 
 // Функция перемешивания массива
 const mixPhotosArray = (array) => {
   let k;
   let temp;
-  for (let i = array.length -1; i > 0; i--) {
+  for (let i = array.length - 1; i > 0; i--) {
     k = Math.floor(Math.random() * (i + 1));
     temp = array[k];
     array[k] = array[i];
     array[i] = temp;
   }
   return array;
-}
+};
 
 // Устранение дребезга списка фотографий
 const debounce = (callback, timeoutDelay = 500) => {

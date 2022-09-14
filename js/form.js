@@ -1,11 +1,11 @@
-import { isEscapeEvent, isEnterEvent } from "./util.js";
-import { onMinButtonClick, onMaxButtonClick, getScaleImageTransform } from "./scale.js";
+import { isEscapeEvent, isEnterEvent } from './util.js';
+import { onMinButtonClick, onMaxButtonClick, getScaleImageTransform } from './scale.js';
 
 const body = document.querySelector('body');
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFileInput = document.querySelector('#upload-file');
 const editImageOverlay = uploadForm.querySelector('.img-upload__overlay');
-const editImageCloseButton = editImageOverlay.querySelector("#upload-cancel");
+const editImageCloseButton = editImageOverlay.querySelector('#upload-cancel');
 const inputHashtags = editImageOverlay.querySelector('.text__hashtags');
 const commentTextarea = editImageOverlay.querySelector('.text__description');
 const minScaleButton = editImageOverlay.querySelector('.scale__control--smaller');
@@ -18,6 +18,20 @@ const successTemplate = document.querySelector('#success').content.querySelector
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
 const DEFAULT_SCALE_VALUE = 100;
+
+//Функция закрытия окна редактирования
+const closeImageEditOverlay = () => {
+  body.classList.remove('modal-open');
+  editImageOverlay.classList.add('hidden');
+  uploadForm.reset();
+  minScaleButton.removeEventListener('click', onMinButtonClick);
+  maxScaleButton.removeEventListener('click', onMaxButtonClick);
+  minScaleButton.removeEventListener('keydown', onLowerImageScaleEnterPress);
+  maxScaleButton.removeEventListener('keydown', onHigherImageScaleEnterPress);
+  document.removeEventListener('keydown', onImageOverlayEscPress);
+  editImageCloseButton.removeEventListener('keydown', onCloseImageOverlayEnterPress);
+  editImageCloseButton.removeEventListener('click', closeImageEditOverlay);
+};
 
 // Функция открытия окна редактирования
 const openImageEditOverlay = () => {
@@ -35,8 +49,8 @@ const openImageEditOverlay = () => {
   //Добавляем события на закрытие окна редактирования
   document.addEventListener('keydown', onImageOverlayEscPress);
   editImageCloseButton.addEventListener('keydown', onCloseImageOverlayEnterPress);
-  editImageCloseButton.addEventListener('click', closeImageEditOverlay)
-}
+  editImageCloseButton.addEventListener('click', closeImageEditOverlay);
+};
 
 //Обработчик окна редакторования
 function onUploadChange() {
@@ -45,41 +59,27 @@ function onUploadChange() {
 
 uploadFileInput.addEventListener('change', onUploadChange);
 
-//Функция закрытия окна редактирования
-const closeImageEditOverlay = () => {
-  body.classList.remove('modal-open');
-  editImageOverlay.classList.add('hidden');
-  uploadForm.reset();
-  minScaleButton.removeEventListener('click', onMinButtonClick);
-  maxScaleButton.removeEventListener('click', onMaxButtonClick);
-  minScaleButton.removeEventListener('keydown', onLowerImageScaleEnterPress);
-  maxScaleButton.removeEventListener('keydown', onHigherImageScaleEnterPress);
-  document.removeEventListener('keydown', onImageOverlayEscPress);
-  editImageCloseButton.removeEventListener('keydown', onCloseImageOverlayEnterPress);
-  editImageCloseButton.removeEventListener('click', closeImageEditOverlay)
-}
-
 // Функция закрытия окна редактирования по нажатию клавиши Esc
-const onImageOverlayEscPress = (evt) => {
+function onImageOverlayEscPress  (evt) {
   const active = document.activeElement;
   if (inputHashtags !== active && commentTextarea !== active) {
     isEscapeEvent(evt, closeImageEditOverlay);
   }
-};
+}
 
 // Функция закрытия окна редактирования по нажатию клавиши Enter
-const onCloseImageOverlayEnterPress = (evt) => {
+function onCloseImageOverlayEnterPress (evt) {
   isEnterEvent(evt, closeImageEditOverlay);
 }
 
 // Функция уменьшения масштаба изображения по нажатию клавиши Enter на кнопку 'уменьшения масштаба'
-const onLowerImageScaleEnterPress = (evt) => {
-  isEnterEvent(evt, onMinButtonClick)
+function onLowerImageScaleEnterPress (evt) {
+  isEnterEvent(evt, onMinButtonClick);
 }
 
 // Функция увеличения масштаба изображения по нажатию клавиши Enter на кнопку 'увеличения масштаба'
-const onHigherImageScaleEnterPress = (evt) => {
-  isEnterEvent(evt, onMaxButtonClick)
+function onHigherImageScaleEnterPress (evt) {
+  isEnterEvent(evt, onMaxButtonClick);
 }
 
 // Создаем фрагмент сообщения об успешной отправке
@@ -88,11 +88,11 @@ const createStatusMessage = (template) => {
   const fragment = document.createDocumentFragment();
   fragment.appendChild(statusMessage);
   body.appendChild(fragment);
-}
+};
 
 //Создание сообщения об успешной отправке формы
 const createSuccessMessage = () => {
-  createStatusMessage(successTemplate)
+  createStatusMessage(successTemplate);
 };
 
 //Закрытие сообщения об успешной отправке
@@ -161,11 +161,11 @@ const closeErrorMessage = () => {
 //Обработчик закрытия сообщения об ошибке
 function onErrorMessageCloseClick () {
   closeErrorMessage();
-};
+}
 
 // Обработчик закрытия сообщения об ошибке по Escape
 function onErrorMessageEscPress (evt) {
-  isEscapeEvent(evt, closeErrorMessage)
+  isEscapeEvent(evt, closeErrorMessage);
 }
 
 //Обработчик закрытия сообщения об ошибке при отправке
@@ -183,4 +183,4 @@ const onErrorCloseForm = () => {
   });
 };
 
-export { closeImageEditOverlay, blockSubmitButton, unblockSubmitButton, onSuccessCloseForm, onErrorCloseForm }
+export { closeImageEditOverlay, blockSubmitButton, unblockSubmitButton, onSuccessCloseForm, onErrorCloseForm };

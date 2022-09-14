@@ -68,7 +68,7 @@ const effects = {
     filter: 'brightness',
     unit: '',
   },
-}
+};
 
 // Создание слайдера регулировки эффектов
 noUiSlider.create(sliderElement, {
@@ -88,7 +88,7 @@ noUiSlider.create(sliderElement, {
     },
     from: (value) => parseFloat(value)
   }
-})
+});
 
 // Создаем событие клика на радиокнопку и выбор эффекта
 let effectFilter;
@@ -106,7 +106,7 @@ effectsList.addEventListener('click', (evt) => {
     }
     sliderElement.noUiSlider.on('update', ()=> {
       valueElement.value = sliderElement.noUiSlider.get();
-      image.style.filter = `${effectFilter.filter}(${valueElement.value}${effectFilter.unit})`
+      image.style.filter = `${effectFilter.filter}(${valueElement.value}${effectFilter.unit})`;
     });
   }
 });

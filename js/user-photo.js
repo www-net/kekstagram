@@ -3,7 +3,7 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const editImageOverlay = document.querySelector('.img-upload__overlay');
 const imagePreview = editImageOverlay.querySelector('.img-upload__preview');
 const image = imagePreview.querySelector('img');
-const fileChooser = document.querySelector('.img-upload__input')
+const fileChooser = document.querySelector('.img-upload__input');
 
 // Выбор фотографии пользователя
 fileChooser.addEventListener('change', () => {
