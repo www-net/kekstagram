@@ -5,4 +5,4 @@ import './form.js';
 import './slider.js';
 import './user-photo.js';
 
-setUserFormSubmit(closeImageEditOverlay)
+setUserFormSubmit(closeImageEditOverlay);

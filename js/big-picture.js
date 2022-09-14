@@ -1,4 +1,4 @@
-import { isEscapeEvent, isEnterEvent } from "./util.js";
+import { isEscapeEvent, isEnterEvent } from './util.js';
 
 //Описание переменных
 const MAX_COMMENT = 5;
@@ -21,15 +21,15 @@ const getBigPictureComment = (comment) => {
   commentItem.querySelector('.social__picture').alt = comment.name;
   commentItem.querySelector('.social__text').textContent = comment.message;
   return commentItem;
-}
+};
 
 //Создание фрагмента комментария
 
 const createCommentsFragment = (commentsArray) => {
   const fragment = document.createDocumentFragment();
   commentsArray.forEach((comment) => {
-    const newComment = getBigPictureComment(comment);
-    fragment.appendChild(newComment);
+    const patternComment = getBigPictureComment(comment);
+    fragment.appendChild(patternComment);
   });
   commentsList.appendChild(fragment);
 };
@@ -69,11 +69,11 @@ const getCurrentCommentCount = (comments) => comments ? comments.children.length
 function onCommentsLoaderClick() {
   const firstIndex = commentsList.children.length;
   const lastIndex = commentsList.children.length + BLOCK_COMMENTS_STEP;
-  let nextVisibleBlock = commentsArrayData.slice(firstIndex, lastIndex);
+  const nextVisibleBlock = commentsArrayData.slice(firstIndex, lastIndex);
   createCommentsFragment(nextVisibleBlock);
   socialCommentCount.firstChild.textContent = `${getCurrentCommentCount(commentsList)} из `;
-  if (commentsList.children.length == commentsArrayData.length) {
-    commentsLoader.classList.add('hidden')
+  if (commentsList.children.length === commentsArrayData.length) {
+    commentsLoader.classList.add('hidden');
     commentsLoader.removeEventListener('click', onCommentsLoaderClick);
   }
   if (commentsArrayData.length === 0) {

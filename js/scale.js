@@ -8,7 +8,7 @@ const MAX_SCALE_VALUE = 100;
 const DEFAULT_SCALE_VALUE = 100;
 
 // Установка значения масштаба по умолчанию 100%
-imageScaleValue.value = `${DEFAULT_SCALE_VALUE}%`
+imageScaleValue.value = `${DEFAULT_SCALE_VALUE}%`;
 
 // Преобразование значения масштаба в целое число с указанной системой счисления
 const getTransformValue = () => parseInt(imageScaleValue.value , 10);
@@ -16,7 +16,7 @@ const getTransformValue = () => parseInt(imageScaleValue.value , 10);
 // Преобразование масштаба в разметке
 const getScaleImageTransform = () => {
   image.style.transform = `scale(${getTransformValue() / 100})`;
-}
+};
 
 //Уменьшение масштаба изображения
 const getLowerValueScale = () => {
@@ -24,8 +24,8 @@ const getLowerValueScale = () => {
   if (resultValue < MIN_SCALE_VALUE) {
     resultValue = MIN_SCALE_VALUE;
   }
-  imageScaleValue.value = `${resultValue}%`
-}
+  imageScaleValue.value = `${resultValue}%`;
+};
 
 //Увеличение масштаба изображения
 const getHigherValueScale = () => {
@@ -33,19 +33,19 @@ const getHigherValueScale = () => {
   if (resultValue > MAX_SCALE_VALUE) {
     resultValue = MAX_SCALE_VALUE;
   }
-  imageScaleValue.value = `${resultValue}%`
-}
+  imageScaleValue.value = `${resultValue}%`;
+};
 
 // Обработчик нажатия на клавишу 'уменьшение масштаба'
 const onMinButtonClick = () => {
   getLowerValueScale();
   getScaleImageTransform();
-}
+};
 
 //Обработчик нажатия на клавишу 'увеличение масштаба'
 const onMaxButtonClick = () => {
   getHigherValueScale();
   getScaleImageTransform();
-}
+};
 
-export { onMinButtonClick, onMaxButtonClick, getScaleImageTransform }
+export { onMinButtonClick, onMaxButtonClick, getScaleImageTransform };
